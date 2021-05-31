@@ -16,5 +16,17 @@ public class Printer {
     public Printer(Console console) {
         this.console = console;
     }
+    public void print(List<Transaction> transactions) {
+        console.printLine(HEADER);
+        transactions.stream().map(this::dataLine)
+                .collect(Collectors.toCollection(LinkedList::new)).descendingIterator()
+                .forEachRemaining(console::printLine);
 
+    }
+    private String dataLine(Transaction transaction) {
+
+        return transaction.getOperationType() + " | " + transaction.getDate() + " | "
+                + transaction.getAmount() + " | "
+                + transaction.getCurrentBalance();
+    }
 }

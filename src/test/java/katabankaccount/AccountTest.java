@@ -6,20 +6,23 @@ import katabankaccount.entities.Transaction;
 import katabankaccount.utilities.DateFormat;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
-
+import org.mockito.runners.MockitoJUnitRunner;
 import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 
+@RunWith(MockitoJUnitRunner.class)
 public class AccountTest {
     private Account account;
     private DateFormat dateformat;
     @Mock
     private Printer printer;
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
         dateformat = new DateFormat();
         account = new Account(dateformat, printer);
     }
@@ -46,5 +49,8 @@ public class AccountTest {
 
     @Test
     public void printStatement() {
+        account.setBalance(500);
+        account.printStatement();
+        verify(printer).print(account.getTransactions());
     }
 }

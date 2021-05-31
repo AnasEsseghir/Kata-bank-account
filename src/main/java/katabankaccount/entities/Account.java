@@ -40,5 +40,7 @@ public class Account {
         Transaction transaction = new Transaction(dateformat.dateToString(date), -amount, "withdrawal", balance);
         transactions.add(transaction);
     }
-    public void printStatement(){}
+    public void printStatement() {
+        printer.print(transactions);
+    }
 }

@@ -32,9 +32,9 @@ public class KataBankAccountApplicationTest {
 
     @Test
     public void verify_print_format() {
-        LocalDate date_deposit1 = LocalDate.of(2020, 6, 29);
-        LocalDate date_withdrawal = LocalDate.of(2020, 6, 24);
-        LocalDate date_deposit2 = LocalDate.of(2020, 6, 21);
+        LocalDate date_deposit1 = LocalDate.of(2021, 5, 31);
+        LocalDate date_withdrawal = LocalDate.of(2021, 5, 29);
+        LocalDate date_deposit2 = LocalDate.of(2021, 5, 14);
         account.deposit(2800, date_deposit2);
         account.withdrawal(800, date_withdrawal);
         account.deposit(2000, date_deposit1);
