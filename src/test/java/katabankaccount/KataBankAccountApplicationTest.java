@@ -1,9 +1,13 @@
 package katabankaccount;
 
 import katabankaccount.entities.Account;
+import katabankaccount.entities.Printer;
 import katabankaccount.utilities.Console;
+import katabankaccount.utilities.DateFormat;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.time.LocalDate;
@@ -13,7 +17,17 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class KataBankAccountApplicationTest {
     Account account;
+    @Mock
     Console console;
+    @Before
+    public void prepare_data() {
+
+        DateFormat dateformat = new DateFormat();
+        Printer printer = new Printer(console);
+        account = new Account(dateformat, printer);
+    }
+
+
     @Test
     public void verify_print_format() {
         LocalDate date_deposit1 = LocalDate.of(2020, 6, 29);

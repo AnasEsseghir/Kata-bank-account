@@ -30,7 +30,11 @@ public class Account {
         return transactions;
     }
 
-    public void deposit(int amount, LocalDate date){}
+    public void deposit(int amount, LocalDate date){
+            balance = balance + amount;
+            Transaction transaction = new Transaction(dateformat.dateToString(date), amount, "deposit", balance);
+            transactions.add(transaction);
+    }
     public void withdrawal(int amount, LocalDate date){}
     public void printStatement(){}
 }
