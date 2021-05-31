@@ -1,0 +1,10 @@
+package katabankaccount;
+public class KataBankAccountApplication {
+
+
+    public static void main(String[] args) {
+
+
+    }
+
+}
