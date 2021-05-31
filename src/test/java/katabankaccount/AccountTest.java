@@ -36,6 +36,12 @@ public class AccountTest {
 
     @Test
     public void withdrawal() {
+        account.setBalance(500);
+        LocalDate date_withdrawal = LocalDate.of(2020, 6, 24);
+        account.withdrawal(50, date_withdrawal);
+        List<Transaction> transactions = account.getTransactions();
+        assertEquals(transactions.size(), 1);
+        assertEquals(transactions.get(0), (new Transaction(dateformat.dateToString(date_withdrawal), -50, "withdrawal", 450)));
     }
 
     @Test

@@ -35,6 +35,10 @@ public class Account {
             Transaction transaction = new Transaction(dateformat.dateToString(date), amount, "deposit", balance);
             transactions.add(transaction);
     }
-    public void withdrawal(int amount, LocalDate date){}
+    public void withdrawal(int amount, LocalDate date){
+        balance = balance - amount;
+        Transaction transaction = new Transaction(dateformat.dateToString(date), -amount, "withdrawal", balance);
+        transactions.add(transaction);
+    }
     public void printStatement(){}
 }
