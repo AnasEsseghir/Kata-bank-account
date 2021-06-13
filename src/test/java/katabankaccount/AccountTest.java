@@ -3,6 +3,7 @@ package katabankaccount;
 import katabankaccount.entities.Account;
 import katabankaccount.entities.Printer;
 import katabankaccount.entities.Transaction;
+import katabankaccount.exceptions.BalanceInsufficientException;
 import katabankaccount.utilities.DateFormat;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,7 +47,30 @@ public class AccountTest {
         assertEquals(transactions.size(), 1);
         assertEquals(transactions.get(0), (new Transaction(dateformat.dateToString(date_withdrawal), -50, "withdrawal", 450)));
     }
+    @Test(expected = BalanceInsufficientException.class)
+    public void withdraw_account_insufficient_balance() throws BalanceInsufficientException {
+        account.setBalance(500);
+        LocalDate date_withdrawal = LocalDate.of(2020, 6, 24);
+        account.withdrawal(6000, date_withdrawal);
+        List<Transaction> transactions = account.getTransactions();
+        assertEquals(transactions.size(), 0);
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void deposit_account_negative_amount() {
+        account.setBalance(500);
+        LocalDate date_withdrawal = LocalDate.of(2020, 6, 24);
+        account.deposit(-500, date_withdrawal);
+
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void withdraw_account_negative_amount() throws BalanceInsufficientException {
+        account.setBalance(500);
+        LocalDate date_withdrawal = LocalDate.of(2020, 6, 24);
+        account.withdrawal(-600, date_withdrawal);
+
+    }
     @Test
     public void printStatement() {
         account.setBalance(500);
