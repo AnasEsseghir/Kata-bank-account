@@ -39,7 +39,7 @@ public class AccountTest {
     }
 
     @Test
-    public void withdrawal() {
+    public void withdrawal() throws BalanceInsufficientException  {
         account.setBalance(500);
         LocalDate date_withdrawal = LocalDate.of(2020, 6, 24);
         account.withdrawal(50, date_withdrawal);

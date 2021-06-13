@@ -2,6 +2,7 @@ package katabankaccount;
 
 import katabankaccount.entities.Account;
 import katabankaccount.entities.Printer;
+import katabankaccount.exceptions.BalanceInsufficientException;
 import katabankaccount.utilities.Console;
 import katabankaccount.utilities.DateFormat;
 import org.junit.Before;
@@ -16,7 +17,7 @@ import java.time.LocalDate;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class KataBankAccountApplicationTest {
+public class PrinterTest {
     Account account;
 
     @Mock
@@ -31,7 +32,7 @@ public class KataBankAccountApplicationTest {
 
 
     @Test
-    public void verify_print_format() {
+    public void verify_print_format() throws BalanceInsufficientException {
         LocalDate date_deposit1 = LocalDate.of(2021, 5, 31);
         LocalDate date_withdrawal = LocalDate.of(2021, 5, 29);
         LocalDate date_deposit2 = LocalDate.of(2021, 5, 14);
